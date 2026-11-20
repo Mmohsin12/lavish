@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAISON VENDÔME | Haute Horlogerie & High Jewelry</title>
+    <meta name="description" content="Discover Maison Vendôme. Exceptional Swiss timepieces, bespoke high jewelry, and rare perfumes handcrafted in Geneva and Paris.">
+    
+    <!-- Google Fonts: Cormorant Garamond, Cinzel & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        noir: {
+                            DEFAULT: '#0A0A0A',
+                            deep: '#050505',
+                            surface: '#121212',
+                            card: '#161616',
+                            border: '#262626'
+                        },
+                        gold: {
+                            light: '#F8EDCF',
+                            champagne: '#E5C887',
+                            DEFAULT: '#D4AF37',
+                            rich: '#B89230',
+                            dark: '#8C6C1B'
+                        },
+                        velvet: {
+                            emerald: '#0B1C16',
+                            ruby: '#210B0E',
+                            sapphire: '#0B1321'
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        widest2: '0.25em',
+                        opulent: '0.35em'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-noir text-[#EAEAEA] font-sans antialiased selection:bg-gold selection:text-noir overflow-x-hidden">
+
+    <!-- Ambient Glow FX Background -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-gold/5 rounded-full blur-[140px]"></div>
+        <div class="absolute top-1/3 -right-40 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[160px]"></div>
+        <div class="absolute -bottom-40 left-1/4 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[180px]"></div>
+    </div>
+
+    <!-- Announcement Bar -->
+    <div class="relative z-50 bg-gradient-to-r from-noir-deep via-noir-surface to-noir-deep border-b border-gold/15 py-2 px-4 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between text-center gap-2">
+            <div class="flex items-center space-x-2 text-gold-champagne tracking-widest text-[11px] uppercase">
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+                <span>Complimentary Armored Courier Delivery & Fully Insured Transit Worldwide</span>
+            </div>
+            <div class="flex items-center space-x-6 text-[11px] text-gray-400 uppercase tracking-widest">
+                <span class="hover:text-gold transition-colors cursor-pointer flex items-center gap-1">
+                    <i data-lucide="clock" class="w-3 h-3 text-gold"></i>
+                    Geneva <span id="geneva-clock" class="text-white font-mono">14:00</span>
+                </span>
+                <span class="hidden sm:inline text-gold/30">|</span>
+                <div class="relative inline-block text-left">
+                    <select id="currency-selector" class="bg-transparent text-gray-300 hover:text-gold border-none focus:outline-none cursor-pointer tracking-wider text-[11px] uppercase">
+                        <option value="USD" class="bg-noir-card text-white">USD ($)</option>
+                        <option value="EUR" class="bg-noir-card text-white">EUR (€)</option>
+                        <option value="GBP" class="bg-noir-card text-white">GBP (£)</option>
+                        <option value="AED" class="bg-noir-card text-white">AED (د.إ)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Luxury Header -->
+    <header id="main-header" class="sticky top-0 z-40 transition-all duration-500 backdrop-blur-md bg-noir/80 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
+            
+            <!-- Mobile Menu Trigger -->
+            <button id="mobile-menu-btn" class="lg:hidden text-white/80 hover:text-gold transition-colors p-2" aria-label="Toggle Navigation">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Navigation Links Left -->
+            <nav class="hidden lg:flex items-center space-x-8 text-xs tracking-widest2 uppercase font-medium">
+                <a href="#timepieces" class="nav-link relative text-gray-300 hover:text-gold transition-colors duration-300">Timepieces</a>
+                <a href="#jewelry" class="nav-link relative text-gray-300 hover:text-gold transition-colors duration-300">High Jewelry</a>
+                <a href="#parfums" class="nav-link relative text-gray-300 hover:text-gold transition-colors duration-300">Rare Parfums</a>
+                <a href="#bespoke" class="nav-link relative text-gray-300 hover:text-gold transition-colors duration-300">Bespoke Atelier</a>
+            </nav>
+
+            <!-- Brand Crest & Logo -->
+            <div class="flex flex-col items-center text-center group cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                <div class="flex items-center gap-1.5 mb-0.5">
+                    <span class="h-[1px] w-6 bg-gradient-to-r from-transparent to-gold"></span>
+                    <i data-lucide="crown" class="w-4 h-4 text-gold transform transition-transform group-hover:scale-110"></i>
+                    <span class="h-[1px] w-6 bg-gradient-to-l from-transparent to-gold"></span>
+                </div>
+                <h1 class="font-cinzel text-xl sm:text-2xl font-bold tracking-opulent text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-champagne">
+                    MAISON VENDÔME
+                </h1>
+                <span class="text-[9px] tracking-[0.3em] uppercase text-gray-400 font-sans mt-0.5">GENÈVE &bull; PARIS &bull; 1888</span>
+            </div>
+
+            <!-- Action Controls Right -->
+            <div class="flex items-center space-x-5 text-gray-300">
+                <button id="search-btn" class="hover:text-gold transition-colors relative p-1.5" title="Search Catalogue">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                </button>
+                <button id="wishlist-btn" class="hidden sm:block hover:text-gold transition-colors relative p-1.5" title="Private Wishlist">
+                    <i data-lucide="heart" class="w-5 h-5"></i>
+                    <span id="wishlist-count" class="hidden absolute -top-1 -right-1 bg-gold text-noir text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+                <button id="cart-btn" class="hover:text-gold transition-colors relative p-1.5 flex items-center gap-2 group" title="Shopping Bag">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                    <span id="cart-count" class="bg-gold text-noir text-[10px] font-bold px-1.5 py-0.2 rounded-full min-w-[18px] text-center">0</span>
+                </button>
+                <button id="concierge-nav-btn" class="hidden xl:inline-flex items-center border border-gold/40 hover:border-gold hover:bg-gold/10 text-gold-champagne px-4 py-2 text-xs tracking-widest uppercase transition-all duration-300">
+                    <i data-lucide="gem" class="w-3.5 h-3.5 mr-2 text-gold"></i>
+                    VIP Concierge
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-nav-drawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden">
+        <div class="w-80 max-w-[85%] h-full bg-noir-card border-r border-gold/20 p-6 flex flex-col justify-between transform -translate-x-full transition-transform duration-300" id="mobile-nav-content">
+            <div>
+                <div class="flex items-center justify-between pb-6 border-b border-white/10">
+                    <span class="font-cinzel text-lg tracking-widest text-gold">MAISON VENDÔME</span>
+                    <button id="close-mobile-nav" class="text-gray-400 hover:text-white">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <div class="mt-8 flex flex-col space-y-6 text-sm tracking-widest uppercase">
+                    <a href="#timepieces" class="mobile-nav-link text-gray-200 hover:text-gold">Timepieces</a>
+                    <a href="#jewelry" class="mobile-nav-link text-gray-200 hover:text-gold">High Jewelry</a>
+                    <a href="#parfums" class="mobile-nav-link text-gray-200 hover:text-gold">Rare Parfums</a>
+                    <a href="#bespoke" class="mobile-nav-link text-gray-200 hover:text-gold">Bespoke Atelier</a>
+                    <a href="#story" class="mobile-nav-link text-gray-200 hover:text-gold">Heritage & Craft</a>
+                    <a href="#press" class="mobile-nav-link text-gray-200 hover:text-gold">Press & Salons</a>
+                </div>
+            </div>
+            <div class="pt-6 border-t border-white/10 flex flex-col gap-4">
+                <button onclick="openBookingModal()" class="w-full bg-gold hover:bg-gold-champagne text-noir font-semibold py-3 text-xs tracking-widest uppercase transition-all">
+                    Book Private Salon
+                </button>
+                <p class="text-[10px] text-center tracking-widest text-gray-500 uppercase">Geneva &bull; Place Vendôme &bull; Mayfair &bull; Dubai</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div id="search-modal" class="fixed inset-0 z-50 bg-noir-deep/95 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-6">
+        <div class="max-w-2xl w-full">
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-gold uppercase tracking-widest text-xs">Atelier Search</span>
+                <button id="close-search-btn" class="text-gray-400 hover:text-white">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="relative border-b-2 border-gold/40 focus-within:border-gold pb-3">
+                <input type="text" id="search-input" placeholder="Search by gemstone, tourbillon, diamond carat, or collection..." 
+                    class="w-full bg-transparent text-xl sm:text-2xl text-white placeholder-gray-500 font-serif focus:outline-none">
+                <i data-lucide="search" class="w-6 h-6 text-gold absolute right-2 top-2"></i>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-2 text-xs tracking-wider">
+                <span class="text-gray-500 uppercase text-[10px] py-1.5">Suggestions:</span>
+                <button class="search-tag px-3 py-1 border border-white/10 rounded-full hover:border-gold text-gray-300 hover:text-gold transition-colors">Astral Tourbillon</button>
+                <button class="search-tag px-3 py-1 border border-white/10 rounded-full hover:border-gold text-gray-300 hover:text-gold transition-colors">Emerald Cut 5.2ct</button>
+                <button class="search-tag px-3 py-1 border border-white/10 rounded-full hover:border-gold text-gray-300 hover:text-gold transition-colors">Oud Imperial</button>
+                <button class="search-tag px-3 py-1 border border-white/10 rounded-full hover:border-gold text-gray-300 hover:text-gold transition-colors">Rose Gold Skeleton</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="relative z-10">
+
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
+            <!-- Background Visual with Luxury Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2087&auto=format&fit=crop" 
+                     alt="Haute Horlogerie Luxury Watch and Gold Jewelry" 
+                     class="w-full h-full object-cover object-center transform scale-105 animate-subtle-zoom brightness-[0.38] contrast-125 filter">
+                <div class="absolute inset-0 bg-gradient-to-t from-noir via-noir/60 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-noir/90 via-transparent to-noir/90"></div>
+                <div class="absolute inset-0 luxury-grain opacity-20"></div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24">
+                
+                <div class="inline-flex items-center gap-3 border border-gold/30 bg-black/40 backdrop-blur-md px-5 py-2 mb-8 rounded-full">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                    <span class="font-cinzel text-xs tracking-widest text-gold-champagne uppercase">Hautes Créations • Geneva Édition 2026</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                </div>
+
+                <h2 class="font-cinzel text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
+                    WHERE RARITY MEETS <br>
+                    <span class="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-gold-rich">
+                        Timeless Transcendence
+                    </span>
+                </h2>
+
+                <p class="max-w-2xl mx-auto font-serif text-lg sm:text-2xl text-gray-300 italic mb-10 leading-relaxed font-light">
+                    &ldquo;Each creation is a private monument to human mastery, sculpted from rare noble metals and diamonds of pristine clarity.&rdquo;
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                    <a href="#curated-vault" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-gold-rich via-gold to-gold-champagne hover:brightness-110 text-noir font-cinzel font-bold text-xs tracking-widest uppercase shadow-lg shadow-gold/20 transition-all duration-300 transform hover:-translate-y-0.5">
+                        Explore The Vault
+                    </a>
+                    <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 border border-gold/40 hover:border-gold hover:bg-white/5 backdrop-blur-sm text-gold-champagne font-cinzel font-medium text-xs tracking-widest uppercase transition-all duration-300">
+                        Reserve Private Viewing
+                    </button>
+                </div>
+
+                <!-- Heritage Highlights Bar -->
+                <div class="mt-16 sm:mt-20 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="font-cinzel text-xl sm:text-2xl text-gold font-bold">100%</div>
+                        <div class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Kimberley Certified Stones</div>
+                    </div>
+                    <div>
+                        <div class="font-cinzel text-xl sm:text-2xl text-gold font-bold">380+</div>
+                        <div class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Hours of Hand Finition</div>
+                    </div>
+                    <div>
+                        <div class="font-cinzel text-xl sm:text-2xl text-gold font-bold">18K / 950</div>
+                        <div class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Noble Gold & Platinum</div>
+                    </div>
+                    <div>
+                        <div class="font-cinzel text-xl sm:text-2xl text-gold font-bold">LIFETIME</div>
+                        <div class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Geneva Atelier Guarantee</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center pointer-events-none opacity-60">
+                <span class="text-[9px] uppercase tracking-[0.25em] text-gray-400 mb-2">Scroll to Discover</span>
+                <div class="w-4 h-7 border border-gold/40 rounded-full flex justify-center pt-1">
+                    <div class="w-1 h-2 bg-gold rounded-full animate-bounce"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LUXURY CURATED VAULT (FILTERABLE CATALOGUE) -->
+        <section id="curated-vault" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center gap-2 mb-3">
+                    <span class="h-px w-8 bg-gold/50"></span>
+                    <span class="text-xs uppercase tracking-opulent text-gold">The Salon Collection</span>
+                    <span class="h-px w-8 bg-gold/50"></span>
+                </div>
+                <h2 class="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+                    The Masterpiece Vault
+                </h2>
+                <p class="font-serif italic text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
+                    Individually numbered, finite editions forged for discerning connoisseurs.
+                </p>
+
+                <!-- Vault Category Tabs -->
+                <div class="mt-10 flex flex-wrap justify-center gap-2 sm:gap-3">
+                    <button class="filter-tab active-tab px-5 py-2.5 text-xs uppercase tracking-widest transition-all rounded-sm font-medium" data-category="all">
+                        All Pieces
+                    </button>
+                    <button class="filter-tab inactive-tab px-5 py-2.5 text-xs uppercase tracking-widest transition-all rounded-sm font-medium" data-category="timepieces">
+                        Haute Horlogerie
+                    </button>
+                    <button class="filter-tab inactive-tab px-5 py-2.5 text-xs uppercase tracking-widest transition-all rounded-sm font-medium" data-category="jewelry">
+                        High Jewelry
+                    </button>
+                    <button class="filter-tab inactive-tab px-5 py-2.5 text-xs uppercase tracking-widest transition-all rounded-sm font-medium" data-category="parfums">
+                        Extrait de Parfum
+                    </button>
+                    <button class="filter-tab inactive-tab px-5 py-2.5 text-xs uppercase tracking-widest transition-all rounded-sm font-medium" data-category="bespoke">
+                        Rare Accessories
+                    </button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+                <!-- Injected via JavaScript -->
+            </div>
+
+        </section>
+
+        <!-- EDITORIAL CRAFTSMANSHIP SPOTLIGHT -->
+        <section id="story" class="py-24 bg-noir-surface relative overflow-hidden border-y border-gold/15">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left: Immersive Visual Collage -->
+                    <div class="relative">
+                        <div class="relative z-10 overflow-hidden shadow-2xl border border-gold/20">
+                            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1974&auto=format&fit=crop" 
+                                 alt="Watchmaker hand-crafting complications in Geneva atelier" 
+                                 class="w-full h-[480px] object-cover filter brightness-90 hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <!-- Floating Secondary Detail -->
+                        <div class="hidden sm:block absolute -bottom-8 -right-8 w-60 h-60 z-20 border-2 border-gold shadow-2xl overflow-hidden bg-noir">
+                            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1974&auto=format&fit=crop" 
+                                 alt="Diamond setting precision" 
+                                 class="w-full h-full object-cover filter contrast-125">
+                            <div class="absolute inset-0 bg-gold/10"></div>
+                        </div>
+                        <div class="absolute -top-6 -left-6 w-32 h-32 border-t-2 border-l-2 border-gold/40 z-0 pointer-events-none"></div>
+                    </div>
+
+                    <!-- Right: Story Prose -->
+                    <div class="lg:pl-6">
+                        <span class="text-xs uppercase tracking-opulent text-gold font-cinzel">Savoir-Faire &bull; Heritage</span>
+                        <h2 class="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 mb-6 leading-tight">
+                            The Sanctuary of <br>
+                            <span class="font-serif italic font-normal text-gold-champagne">Invisible Perfection</span>
+                        </h2>
+                        
+                        <p class="font-serif text-lg text-gray-300 leading-relaxed mb-6 font-light">
+                            At our ateliers nestled in the Vallée de Joux and Place Vendôme, time ceases to be a measurement and becomes a medium. Our master gem-setters and horologists adhere to centuries-old Geneva seal standards where even the unseen underside of a tourbillon bridge is chamfered by hand with gentian wood.
+                        </p>
+
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full border border-gold/40 flex items-center justify-center shrink-0 mt-1">
+                                    <i data-lucide="sparkles" class="w-4 h-4 text-gold"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-cinzel text-sm font-semibold tracking-wider">Type IIa Pure Carbon Diamonds</h4>
+                                    <p class="text-gray-400 text-xs mt-1">Representing less than 1.8% of gem diamonds on earth, offering unblemished chemical purity and optical fire.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full border border-gold/40 flex items-center justify-center shrink-0 mt-1">
+                                    <i data-lucide="compass" class="w-4 h-4 text-gold"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-cinzel text-sm font-semibold tracking-wider">In-House Flying Tourbillons</h4>
+                                    <p class="text-gray-400 text-xs mt-1">Engineered to counter Earth's gravitational pull with titanium cages weighing a mere 0.28 grams.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full border border-gold/40 flex items-center justify-center shrink-0 mt-1">
+                                    <i data-lucide="feather" class="w-4 h-4 text-gold"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-cinzel text-sm font-semibold tracking-wider">Vintage Rose de Mai & Wild Cambodian Oud</h4>
+                                    <p class="text-gray-400 text-xs mt-1">Aged in French limousin oak casks for eight seasons prior to crystal bottling.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-6">
+                            <button onclick="openBookingModal()" class="px-6 py-3.5 bg-gold text-noir font-cinzel font-bold text-xs uppercase tracking-widest hover:bg-gold-champagne transition-all shadow-md">
+                                Discover Atelier Archives
+                            </button>
+                            <span class="font-serif italic text-sm text-gold-champagne">Founded 1888, Place Vendôme</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- THE HIGH JEWELRY EDITORIAL SHOWCASE (INTERACTIVE BANNER) -->
+        <section id="jewelry" class="py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="relative rounded-sm overflow-hidden border border-gold/30">
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=2070&auto=format&fit=crop" 
+                         alt="High Jewelry Diamond and Colombian Emerald Suite" 
+                         class="w-full h-[520px] object-cover object-center filter brightness-[0.45] contrast-110">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-r from-noir via-noir/60 to-transparent flex items-center">
+                        <div class="max-w-xl p-8 sm:p-14">
+                            <span class="text-xs uppercase tracking-opulent text-gold font-cinzel">Exclusive High Jewelry Edition</span>
+                            <h3 class="font-cinzel text-3xl sm:text-5xl font-bold text-white mt-3 mb-4 leading-tight">
+                                The Imperial <br>
+                                <span class="font-serif italic text-gold-champagne">Emerald Collana</span>
+                            </h3>
+                            <p class="font-serif text-lg text-gray-300 mb-6 leading-relaxed">
+                                Anchored by a peerless 14.85-carat untreated Muzo Colombian emerald, ensconced in a garland of marquise and brilliant-cut D-Flawless diamonds set in platinum 950.
+                            </p>
+                            
+                            <div class="flex items-center gap-4 mb-8">
+                                <div class="text-white">
+                                    <div class="text-[10px] uppercase tracking-widest text-gray-400">Purity</div>
+                                    <div class="font-cinzel text-sm text-gold">Type IIa &bull; D-IF</div>
+                                </div>
+                                <div class="h-8 w-px bg-white/20"></div>
+                                <div class="text-white">
+                                    <div class="text-[10px] uppercase tracking-widest text-gray-400">Edition</div>
+                                    <div class="font-cinzel text-sm text-gold">Unique Piece (1 of 1)</div>
+                                </div>
+                                <div class="h-8 w-px bg-white/20"></div>
+                                <div class="text-white">
+                                    <div class="text-[10px] uppercase tracking-widest text-gray-400">Valuation</div>
+                                    <div class="font-cinzel text-sm text-gold price-display" data-base-price="380000">$380,000</div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-4">
+                                <button onclick="quickViewProduct('emerald-collana')" class="px-7 py-3.5 bg-gold hover:bg-gold-champagne text-noir font-cinzel font-bold text-xs uppercase tracking-widest transition-all">
+                                    Examine Gemology
+                                </button>
+                                <button onclick="openBookingModal('The Imperial Emerald Collana')" class="px-7 py-3.5 border border-white/40 hover:border-gold hover:bg-white/5 text-white font-cinzel text-xs uppercase tracking-widest transition-all">
+                                    Inquire with Curator
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RARE PERFUMES & BESPOKE SECTION -->
+        <section id="parfums" class="py-24 bg-noir-deep border-t border-gold/15">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <div class="lg:col-span-1 flex flex-col justify-between p-8 border border-gold/20 bg-gradient-to-b from-noir-surface to-noir">
+                        <div>
+                            <span class="text-xs uppercase tracking-opulent text-gold font-cinzel">Haute Parfumerie</span>
+                            <h3 class="font-cinzel text-3xl font-bold text-white mt-2 mb-4">
+                                Liquid Splendor & Sacred Resins
+                            </h3>
+                            <p class="font-serif text-gray-300 text-base leading-relaxed mb-6 font-light">
+                                Extracted in Grasse using antique copper alembics. Each flacon is hand-blown from crystal de Baccarat and sealed with gold leaf wire.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-white/10">
+                            <p class="text-xs text-gold-champagne tracking-widest uppercase mb-4">Master Perfumer: Antoine de Rochefort</p>
+                            <a href="#curated-vault" onclick="document.querySelector('[data-category=\'parfums\']').click()" class="inline-flex items-center text-xs tracking-widest uppercase text-white hover:text-gold transition-colors">
+                                View Fragrance Treasury <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Parfums Card 1 -->
+                    <div class="group relative bg-noir-card border border-white/10 hover:border-gold/40 transition-all duration-500 p-6 flex flex-col justify-between">
+                        <div class="relative overflow-hidden aspect-[4/5] mb-6">
+                            <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1974&auto=format&fit=crop" 
+                                 alt="Oud Imperial Extrait de Parfum" 
+                                 class="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700">
+                            <span class="absolute top-3 left-3 bg-noir/80 backdrop-blur-md px-3 py-1 text-[10px] tracking-widest uppercase text-gold border border-gold/20">Numbered Flacon</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gray-400">Pure Extrait 38% Concentration</span>
+                            <h4 class="font-cinzel text-xl text-white font-semibold mt-1">Oud Impérial & Rose Noire</h4>
+                            <p class="text-xs text-gray-400 mt-2 font-serif italic">Wild Assamese Agarwood, Bulgarian Damask Rose, Ambergris.</p>
+                            <div class="mt-4 flex items-center justify-between">
+                                <span class="font-cinzel text-gold text-lg price-display" data-base-price="1250">$1,250</span>
+                                <button onclick="addToBag('parfum-oud')" class="px-4 py-2 border border-gold/40 hover:border-gold hover:bg-gold hover:text-noir text-xs tracking-widest uppercase transition-all">
+                                    Acquire
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parfums Card 2 -->
+                    <div class="group relative bg-noir-card border border-white/10 hover:border-gold/40 transition-all duration-500 p-6 flex flex-col justify-between">
+                        <div class="relative overflow-hidden aspect-[4/5] mb-6">
+                            <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=1974&auto=format&fit=crop" 
+                                 alt="Ambre Doré Grand Cru" 
+                                 class="w-full h-full object-cover filter contrast-110 group-hover:scale-105 transition-transform duration-700">
+                            <span class="absolute top-3 left-3 bg-noir/80 backdrop-blur-md px-3 py-1 text-[10px] tracking-widest uppercase text-gold border border-gold/20">Reserve Privée</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-gray-400">Grand Cru Harvest 2022</span>
+                            <h4 class="font-cinzel text-xl text-white font-semibold mt-1">Ambre Doré Grand Cru</h4>
+                            <p class="text-xs text-gray-400 mt-2 font-serif italic">Golden Amber resin, Bourbon Vanilla infusion, Somali Frankincense.</p>
+                            <div class="mt-4 flex items-center justify-between">
+                                <span class="font-cinzel text-gold text-lg price-display" data-base-price="980">$980</span>
+                                <button onclick="addToBag('parfum-ambre')" class="px-4 py-2 border border-gold/40 hover:border-gold hover:bg-gold hover:text-noir text-xs tracking-widest uppercase transition-all">
+                                    Acquire
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PRIVATE CLIENT VIP SERVICES & CONCIERGE -->
+        <section id="bespoke" class="py-24 bg-noir relative border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-16">
+                    <span class="text-xs uppercase tracking-opulent text-gold font-cinzel">White Glove Protocol</span>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-2 mb-4">
+                        The Maison Concierge
+                    </h2>
+                    <p class="font-serif italic text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
+                        Tailored personal service catering to our esteemed collectors across seven continents.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="p-8 border border-white/10 hover:border-gold/50 bg-noir-surface/60 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center mb-6 group-hover:border-gold group-hover:bg-gold/10 transition-colors">
+                            <i data-lucide="shield-check" class="w-6 h-6 text-gold"></i>
+                        </div>
+                        <h3 class="font-cinzel text-lg text-white font-semibold mb-3">Armored Diplomatic Transit</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed font-serif">
+                            Direct door-to-door escort by discreet, vetted couriers with satellite tracking and total insurance binder underwriting up to $10,000,000 per shipment.
+                        </p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="p-8 border border-white/10 hover:border-gold/50 bg-noir-surface/60 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center mb-6 group-hover:border-gold group-hover:bg-gold/10 transition-colors">
+                            <i data-lucide="eye" class="w-6 h-6 text-gold"></i>
+                        </div>
+                        <h3 class="font-cinzel text-lg text-white font-semibold mb-3">Private Atelier Salons</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed font-serif">
+                            Confidential appointment at our private townhouses on Place Vendôme Paris, Rue du Rhône Geneva, New York 5th Avenue, and Dubai DIFC.
+                        </p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="p-8 border border-white/10 hover:border-gold/50 bg-noir-surface/60 transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center mb-6 group-hover:border-gold group-hover:bg-gold/10 transition-colors">
+                            <i data-lucide="pen-tool" class="w-6 h-6 text-gold"></i>
+                        </div>
+                        <h3 class="font-cinzel text-lg text-white font-semibold mb-3">Commission Sur Mesure</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed font-serif">
+                            Collaborate one-on-one with our Master Horologist or Head Jewelry Designer to source unique stones and create an unrepeatable bespoke heirloom.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CTA Banner -->
+                <div class="mt-16 p-8 sm:p-12 border border-gold/30 bg-gradient-to-r from-noir-surface via-noir-card to-noir-surface flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <h4 class="font-cinzel text-2xl text-white font-bold">Request a Confidential Consultation</h4>
+                        <p class="font-serif italic text-gray-400 mt-1">Our senior curator will reply within 4 hours via encrypted channel or telephone.</p>
+                    </div>
+                    <button onclick="openBookingModal()" class="px-8 py-4 bg-gold hover:bg-gold-champagne text-noir font-cinzel font-bold text-xs uppercase tracking-widest whitespace-nowrap transition-all shadow-lg shadow-gold/20">
+                        Schedule Private Audience
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PRESS & TESTIMONIALS -->
+        <section id="press" class="py-24 bg-noir-deep border-y border-white/5">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                
+                <span class="text-xs uppercase tracking-opulent text-gold font-cinzel">Critique & Accolades</span>
+                
+                <div class="mt-10 relative">
+                    <p class="font-serif text-2xl sm:text-3xl md:text-4xl text-gray-200 italic font-light leading-relaxed">
+                        &ldquo;Maison Vendôme stands in a rarefied echelon where horological rigor and uncompromising Parisian aesthetics achieve near-divine harmony.&rdquo;
+                    </p>
+                    <div class="mt-8 flex flex-col items-center">
+                        <span class="font-cinzel font-semibold tracking-widest text-gold uppercase text-sm">Robb Report International</span>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest mt-1">Watch & Jewelry Atelier of the Year 2025</span>
+                    </div>
+                </div>
+
+                <!-- Media Logos Grid -->
+                <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-8 items-center justify-center opacity-40 grayscale hover:grayscale-0 transition-all">
+                    <span class="font-cinzel text-lg sm:text-xl tracking-widest text-white">VOGUE HAUTE</span>
+                    <span class="font-serif italic text-xl sm:text-2xl text-white">Financial Times</span>
+                    <span class="font-cinzel text-lg sm:text-xl tracking-widest text-white">GQ PRESTIGE</span>
+                    <span class="font-serif tracking-widest text-xl text-white">L'OFFICIEL</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIP NEWSLETTER PRIVILEGE CLUB -->
+        <section class="py-24 relative overflow-hidden bg-noir">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <div class="w-16 h-16 mx-auto rounded-full border border-gold/40 flex items-center justify-center mb-6">
+                    <i data-lucide="mail" class="w-6 h-6 text-gold"></i>
+                </div>
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white mb-3">
+                    The Circle of Patronage
+                </h2>
+                <p class="font-serif italic text-lg text-gray-400 max-w-xl mx-auto mb-8 font-light">
+                    Gain discreet pre-market access to unreleased tourbillons, private salon invitations, and our seasonal gemological monograph.
+                </p>
+
+                <form id="newsletter-form" class="max-w-md mx-auto flex flex-col sm:flex-row gap-3" onsubmit="event.preventDefault(); subscribeNewsletter();">
+                    <input type="email" id="newsletter-email" required placeholder="Enter your private email address..." 
+                           class="flex-1 bg-noir-surface border border-white/20 px-5 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold">
+                    <button type="submit" class="bg-gold hover:bg-gold-champagne text-noir font-cinzel font-bold text-xs uppercase tracking-widest px-8 py-3.5 transition-all">
+                        Join Circle
+                    </button>
+                </form>
+                <p class="text-[11px] text-gray-600 mt-3 tracking-wider">Unconditionally confidential. No unsolicited contact.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-noir-deep border-t border-gold/15 text-gray-400 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="lg:col-span-2">
+                    <span class="font-cinzel text-xl text-white tracking-widest font-bold">MAISON VENDÔME</span>
+                    <p class="font-serif text-sm text-gray-400 mt-4 max-w-sm leading-relaxed">
+                        Geneva horological manufacture and Paris Place Vendôme jeweler since 1888. Dedicated to the pinnacle of rarity, integrity, and sublime human artistry.
+                    </p>
+                    <div class="mt-6 flex space-x-4 text-gray-400">
+                        <a href="#" class="hover:text-gold transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="hover:text-gold transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="hover:text-gold transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                        <a href="#" class="hover:text-gold transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Salons -->
+                <div>
+                    <h5 class="font-cinzel text-xs text-white uppercase tracking-widest font-semibold mb-4">Salons & Ateliers</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li class="hover:text-gold cursor-pointer">Place Vendôme, Paris</li>
+                        <li class="hover:text-gold cursor-pointer">Rue du Rhône, Genève</li>
+                        <li class="hover:text-gold cursor-pointer">Bond Street, London</li>
+                        <li class="hover:text-gold cursor-pointer">Fifth Avenue, New York</li>
+                        <li class="hover:text-gold cursor-pointer">DIFC Gate Village, Dubai</li>
+                        <li class="hover:text-gold cursor-pointer">Ginza 6-chome, Tokyo</li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Maison Heritage -->
+                <div>
+                    <h5 class="font-cinzel text-xs text-white uppercase tracking-widest font-semibold mb-4">The Maison</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li class="hover:text-gold cursor-pointer">1888 Heritage Archive</li>
+                        <li class="hover:text-gold cursor-pointer">The Geneva Seal Standard</li>
+                        <li class="hover:text-gold cursor-pointer">Kimberley Protocol & Ethics</li>
+                        <li class="hover:text-gold cursor-pointer">Horological Museum</li>
+                        <li class="hover:text-gold cursor-pointer">Careers at the Atelier</li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Client Services -->
+                <div>
+                    <h5 class="font-cinzel text-xs text-white uppercase tracking-widest font-semibold mb-4">Client Care</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li class="hover:text-gold cursor-pointer" onclick="openBookingModal()">Private Concierge</li>
+                        <li class="hover:text-gold cursor-pointer">Bespoke Monogramming</li>
+                        <li class="hover:text-gold cursor-pointer">Restoration & Servicing</li>
+                        <li class="hover:text-gold cursor-pointer">Certificate of Provenance</li>
+                        <li class="hover:text-gold cursor-pointer">Global Armored Transit</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 Maison Vendôme S.A. All rights reserved. Registered Geneva & Paris.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-gold">Legal Notice</a>
+                    <a href="#" class="hover:text-gold">Privacy & Confidentiality</a>
+                    <a href="#" class="hover:text-gold">Supply Chain Transparency</a>
+                    <a href="#" class="hover:text-gold">Cookie Governance</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SLIDING CART DRAWER -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-noir-surface border-l border-gold/30 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300" id="cart-drawer-panel">
+            
+            <!-- Cart Header -->
+            <div>
+                <div class="flex items-center justify-between pb-5 border-b border-white/10">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-gold"></i>
+                        <h3 class="font-cinzel text-base tracking-widest text-white uppercase">Your Private Vault</h3>
+                    </div>
+                    <button id="close-cart-btn" class="text-gray-400 hover:text-white">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Free Insured Courier Progress Indicator -->
+                <div class="py-4 border-b border-white/5">
+                    <div class="flex justify-between text-[11px] text-gray-400 mb-1.5">
+                        <span class="flex items-center gap-1"><i data-lucide="shield" class="w-3.5 h-3.5 text-gold"></i> Insured Global Courier</span>
+                        <span class="text-gold font-medium">Qualified</span>
+                    </div>
+                    <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+                        <div class="bg-gradient-to-r from-gold-rich to-gold h-full w-full"></div>
+                    </div>
+                </div>
+
+                <!-- Items List -->
+                <div id="cart-items" class="mt-4 space-y-4 max-h-[48vh] overflow-y-auto pr-1">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Cart Footer & Checkout -->
+            <div class="pt-6 border-t border-white/10">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs uppercase tracking-widest text-gray-400">Complimentary Gift Packaging</span>
+                    <span class="text-xs text-gold uppercase font-medium">Included</span>
+                </div>
+                <div class="flex items-center justify-between text-base mb-6">
+                    <span class="font-cinzel text-white uppercase tracking-wider">Estimated Subtotal</span>
+                    <span id="cart-subtotal" class="font-cinzel text-xl text-gold font-bold">$0</span>
+                </div>
+                
+                <button id="checkout-btn" onclick="initiateCheckout()" class="w-full py-4 bg-gradient-to-r from-gold-rich via-gold to-gold-champagne hover:brightness-110 text-noir font-cinzel font-bold text-xs uppercase tracking-widest shadow-lg shadow-gold/20 transition-all">
+                    Proceed to Armored Checkout
+                </button>
+                <p class="text-[10px] text-center text-gray-500 uppercase tracking-widest mt-3 flex items-center justify-center gap-2">
+                    <i data-lucide="lock" class="w-3 h-3 text-gold"></i> 256-Bit Encrypted Confidential Transaction
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- QUICK VIEW MODAL -->
+    <div id="quick-view-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+        <div class="max-w-4xl w-full bg-noir-card border border-gold/40 shadow-2xl relative overflow-hidden flex flex-col md:flex-row max-h-[90vh]" id="quick-view-panel">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 z-20 text-gray-400 hover:text-white bg-black/50 p-2 rounded-full">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div id="quick-view-content" class="w-full flex flex-col md:flex-row">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- PRIVATE APPOINTMENT / CONCIERGE BOOKING MODAL -->
+    <div id="booking-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+        <div class="max-w-lg w-full bg-noir-surface border border-gold/40 shadow-2xl p-8 relative">
+            <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <div class="text-center mb-6">
+                <div class="flex justify-center mb-2">
+                    <i data-lucide="gem" class="w-6 h-6 text-gold"></i>
+                </div>
+                <h3 class="font-cinzel text-2xl font-bold text-white">Private Salon Audience</h3>
+                <p class="font-serif italic text-gray-400 text-sm mt-1">Reserve a confidential viewing at any global Maison atelier.</p>
+            </div>
+
+            <form id="booking-form" onsubmit="event.preventDefault(); submitBooking();" class="space-y-4">
+                <div>
+                    <label class="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Full Name & Title</label>
+                    <input type="text" required placeholder="e.g. Lord Alexander Kensington" 
+                           class="w-full bg-noir border border-white/20 p-3 text-sm text-white focus:outline-none focus:border-gold">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Private Email</label>
+                        <input type="email" required placeholder="name@domain.com" 
+                               class="w-full bg-noir border border-white/20 p-3 text-sm text-white focus:outline-none focus:border-gold">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Telephone / Encrypted</label>
+                        <input type="tel" required placeholder="+44 20 7123 4567" 
+                               class="w-full bg-noir border border-white/20 p-3 text-sm text-white focus:outline-none focus:border-gold">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Preferred Atelier City</label>
+                    <select id="booking-city" class="w-full bg-noir border border-white/20 p-3 text-sm text-white focus:outline-none focus:border-gold">
+                        <option value="Geneva">Genève &bull; Rue du Rhône</option>
+                        <option value="Paris">Paris &bull; Place Vendôme</option>
+                        <option value="London">London &bull; New Bond Street</option>
+                        <option value="New York">New York &bull; 5th Avenue</option>
+                        <option value="Dubai">Dubai &bull; DIFC Gate Village</option>
+                        <option value="Tokyo">Tokyo &bull; Ginza</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase tracking-widest text-gray-400 mb-1">Pieces of Interest / Notes</label>
+                    <input type="text" id="booking-piece-interest" placeholder="e.g. Astral Tourbillon or bespoke engagement" 
+                           class="w-full bg-noir border border-white/20 p-3 text-sm text-white focus:outline-none focus:border-gold">
+                </div>
+                <button type="submit" class="w-full py-4 mt-2 bg-gold hover:bg-gold-champagne text-noir font-cinzel font-bold text-xs uppercase tracking-widest transition-all">
+                    Confirm Confidential Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3 pointer-events-none"></div>
+
+    <!-- JavaScript Bundle -->
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

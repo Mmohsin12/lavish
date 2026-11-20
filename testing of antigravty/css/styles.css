@@ -1,0 +1,128 @@
+/* ==========================================================================
+   MAISON VENDÔME - LUXURY CUSTOM STYLES & MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* Custom Smooth Scrolling & Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+    background: #4A3E1B;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #D4AF37;
+}
+
+/* Subtle Film Grain Texture for High-End Editorial Feel */
+.luxury-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* Gold Gradient Shimmers */
+.gold-shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(212, 175, 55, 0.1) 0%,
+        rgba(255, 235, 175, 0.5) 50%,
+        rgba(212, 175, 55, 0.1) 100%
+    );
+    background-size: 200% 100%;
+    animation: goldShimmer 3s infinite linear;
+}
+
+@keyframes goldShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Subtle Zoom Animation for Editorial Imagery */
+@keyframes subtleZoom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+
+.animate-subtle-zoom {
+    animation: subtleZoom 25s ease-in-out infinite;
+}
+
+/* Filter Tab States */
+.active-tab {
+    background-color: #D4AF37;
+    color: #0A0A0A;
+    border: 1px solid #D4AF37;
+}
+
+.inactive-tab {
+    background-color: transparent;
+    color: #A3A3A3;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.inactive-tab:hover {
+    border-color: #D4AF37;
+    color: #D4AF37;
+}
+
+/* Nav Link Underline Hover Effect */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #D4AF37;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Product Card Glow & Hover elevation */
+.product-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: #121212;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px -15px rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.45);
+}
+
+/* Toast Animations */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.toast-enter {
+    animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-exit {
+    animation: slideOutRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
